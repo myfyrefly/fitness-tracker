@@ -1,13 +1,11 @@
 const path = require('path');
+const router = require('express').Router();
 
 module.exports = function(app) {
-    // app.get('/', (req, res) => {
-    //     res.redirect('/fitness-tracker');
-    // });
-    app.get('/exercise', (req, res) => {
+    router.get('/exercise', (req, res) => {
         res.sendFile(path.join(process.cwd() + '/public/exercise.html'));
     });
-    app.get('/stats', (req, res) => {
+    router.get('/stats', (req, res) => {
         res.sendFile(path.join(process.cwd() + '/public/stats.html'));
     });
 };
