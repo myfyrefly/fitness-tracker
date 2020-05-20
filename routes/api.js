@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Workout = require("../models/workoutModel");
+const Workout = require("../models/workout");
 
 // this is my create route
   router.post("/api/workouts", (req, res) => {
@@ -26,7 +26,7 @@ const Workout = require("../models/workoutModel");
   router.put("/api/workouts/:id", ({ body, params }, res) => {
       Workout.findByIdAndUpdate(
           params.id,
-          {$push: {exercises: body}} // adding data to db not creating brand new
+          { $push: { exercises: body } } // adding data to db not creating brand new
       )
       .then(dbWorkout => {
           res.json(dbWorkout);
@@ -38,11 +38,9 @@ const Workout = require("../models/workoutModel");
 
   // delete route
   router.delete("/api/workouts", ({ body }, res) => {
-      Workout.findByIdAndDelete(
-          body.id
-      )
+      Workout.findByIdAndDelete(body.id)
       .then(() => {
-          res.json(true)
+          res.json(true);
       })
       .catch(err => {
         res.json(err);
